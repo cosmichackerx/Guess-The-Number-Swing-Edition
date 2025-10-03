@@ -360,3 +360,59 @@ public class GuessTheNumberSwing extends JFrame {
     }
 }
 ```
+---
+# 🎲 Guess The Number — Swing Edition
+
+A feature-rich, graphical user interface (GUI) version of the classic "Guess the Number" game, built using **Java Swing**.
+
+This application goes beyond the basic console game, offering a polished experience with adjustable difficulty, smart hints, attempt limits, and persistent high scores.
+
+## ✨ Features
+
+* **Difficulty Settings:** Choose from three modes that adjust the guessing range and the maximum number of attempts:
+    * **Easy:** 1 - 20 (fewer attempts)
+    * **Medium:** 1 - 100
+    * **Hard:** 1 - 1000 (more attempts, bigger challenge)
+* **Intelligent Hints:** Receive standard "Too High/Too Low" feedback, plus **proximity hints** ("🔥 Burning Hot," "♨️ Warm," "🥶 Cold") to guide your next guess.
+* **Attempt Limits:** The maximum number of guesses is calculated dynamically based on the difficulty range (approximating $\log_2(\text{max})$) to ensure a fair but challenging experience.
+* **High Score Persistence:** Your best score (lowest number of attempts) for each difficulty level is automatically saved to a local file (`guess_highscores.properties`) and loaded every time you start the game.
+* **User-Friendly Interface:**
+    * Clean, responsive Swing layout.
+    * Enter key in the guess field submits the guess.
+    * "New Game" and "Exit" options available via a top menu.
+    * Visual cues (color flashes) for wins and losses.
+
+***
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+You need to have the **Java Development Kit (JDK) version 8 or later** installed on your system.
+
+### Running the Application
+
+Since the entire application is contained within a single `.java` file, running it is straightforward:
+
+1.  **Save:** Save the provided code into a file named `GuessTheNumberSwing.java`.
+2.  **Compile:** Open your terminal or command prompt in the directory where you saved the file and compile it:
+    ```bash
+    javac GuessTheNumberSwing.java
+    ```
+3.  **Run:** Execute the compiled class file:
+    ```bash
+    java GuessTheNumberSwing
+    ```
+
+The GUI window should immediately appear, ready for you to select a difficulty and start playing!
+
+***
+
+## ⚙️ Game Logic Highlights (For Developers)
+
+* **Difficulty Calculation:** The maximum number of guesses (`maxGuesses`) is calculated using the formula:
+    $$\text{maxGuesses} = \text{ceil}(\log_2(\text{max\_range})) + 1$$
+    This is based on the optimal strategy of **binary search**, ensuring that a perfect player has enough attempts to guarantee a win.
+* **High Score Storage:** The application uses the built-in Java `java.util.Properties` class to manage high scores. Scores are saved to a file named `guess_highscores.properties` in the application directory.
+* **Keyboard Shortcuts:** Pressing **`Ctrl + N`** (or equivalent on some systems) immediately starts a new game, mirroring standard desktop application behavior.
+* **`UIManager.getSystemLookAndFeelClassName()`:** This line ensures the application uses the native look and feel of the operating system (e.g., Windows, macOS, Linux), making it look integrated and modern.
